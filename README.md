@@ -28,6 +28,7 @@ Basic structure to create a new project.
 - DB_PASSWORD: Database password
 - DB_NAME: Database name
 - AWS_AMPLIFY_ENABLED: enables/disables authentication middleware
+- SENTRY_ENABLED: enables/disables Sentry Error Tracking
 
 **Optional**
 
@@ -40,7 +41,6 @@ Basic structure to create a new project.
 ### TO-DO
 
 - Sentry optional
-- Auth via Amplify optional
 
 ### Install
 

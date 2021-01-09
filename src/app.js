@@ -6,7 +6,8 @@ const helmet = require('helmet');
 const cors = require('cors');
 const sanitize = require('sanitize');
 const morgan = require('morgan');
-const sentry = require('./common/sentry');
+
+if (process.env.SENTRY_ENABLED) const sentry = require('./common/sentry');
 const { NotFoundError } = require('./common/errors');
 
 const logger = require('./common/logger');
@@ -37,7 +38,11 @@ app.use('/api/v1', routes);
 app.use((err, req, res, next) => {
   if (err) {
     logger.error(err.stack);
-    if (!process.env.IS_OFFLINE && process.env.NODE_ENV !== 'test') {
+    if (
+      process.env.SENTRY_ENABLED &&
+      !process.env.IS_OFFLINE &&
+      process.env.NODE_ENV !== 'test'
+    ) {
       sentry.captureException(err.stack);
     }
 
