@@ -38,10 +38,6 @@ Basic structure to create a new project.
 - AWS_REGION: Region where Amplify is configured
 - AWS_USER_AUD: Audience name on Cognito, used to check if token on request is valid
 
-### TO-DO
-
-- Sentry optional
-
 ### Install
 
 `$ npm i`
