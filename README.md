@@ -9,13 +9,8 @@ Basic structure to create a new project.
 - Sentry account
 - AWS CLI configured (optional)
 - AWS Amplify configured (optional)
-- Serverless Framework (optional)
 
 ### Environment Variables
-
-**Default**
-
-- IS_OFFLINE: When running Serverless offline, this is automatically set to true, otherwise it's undefined
 
 **Required**
 
@@ -40,7 +35,7 @@ Basic structure to create a new project.
 
 ### Install
 
-`$ npm i`
+`$ npm install`
 
 ### Run tests
 
@@ -48,17 +43,11 @@ Basic structure to create a new project.
 
 ### Start offline
 
+`$ npm run start-local`
+
+### Start
+
 `$ npm start`
-
-### Start offline with Serverless
-
-**Requires Serverless configured**
-`$ npm run start-serverless`
-
-### Deploy to Serverless
-
-**Requires Serverless configured**
-`$ npm run deploy`
 
 ### License
 

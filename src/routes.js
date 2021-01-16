@@ -16,7 +16,7 @@ router.use('/health', healthCheck);
 router.use('/sample', sample);
 
 // DB
-if (process.env.IS_OFFLINE || process.env.NODE_ENV === 'test') {
+if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'local') {
   router.use('/create-tables', createTables);
   router.use('/drop-tables', dropTables);
   router.use('/populate-tables', populateTables);

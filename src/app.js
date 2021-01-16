@@ -6,8 +6,12 @@ const helmet = require('helmet');
 const cors = require('cors');
 const sanitize = require('sanitize');
 const morgan = require('morgan');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./docs/v1/swagger');
 
-if (process.env.SENTRY_ENABLED) const sentry = require('./common/sentry');
+if (process.env.SENTRY_ENABLED) {
+  const sentry = require('./common/sentry');
+}
 const { NotFoundError } = require('./common/errors');
 
 const logger = require('./common/logger');
@@ -24,29 +28,31 @@ app.use(sanitize.middleware);
 app.use(morgan('combined', { stream: logger.stream }));
 
 // eslint-disable-next-line no-unused-vars
-if (!process.env.IS_OFFLINE) {
-  app.use((req, res, next) => {
-    res.header('Access-Control-Expose-Headers', 'access-token');
-    res.header('Access-Control-Allow-Origin', 'https://www/mydomain.com');
-    return next();
-  });
-}
+app.use((req, res, next) => {
+  res.header('Access-Control-Expose-Headers', 'access-token');
+  res.header('Access-Control-Allow-Origin', 'https://www/mydomain.com');
+  return next();
+});
+
+app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/api/v1', routes);
 
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   if (err) {
+    console.log('err', err.message);
     logger.error(err.stack);
-    if (
-      process.env.SENTRY_ENABLED &&
-      !process.env.IS_OFFLINE &&
-      process.env.NODE_ENV !== 'test'
-    ) {
+    if (process.env.SENTRY_ENABLED && process.env.NODE_ENV !== 'test') {
       sentry.captureException(err.stack);
     }
 
-    if (!err.status) return res.status(500).json();
+    if (!err.status) {
+      if (err.message.includes(`connect ECONNREFUSED ${process.env.DB_HOST}`)) {
+        logger.error('Cannot connect to database');
+      }
+      return res.status(500).json();
+    }
     return res.status(err.status).send({ error: err.message });
   } else {
     const { status, message } = NotFoundError();

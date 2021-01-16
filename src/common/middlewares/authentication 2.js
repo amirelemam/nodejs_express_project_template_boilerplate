@@ -45,7 +45,7 @@ const authentication = async (req, res, next) => {
     if (
       !process.env.AWS_AMPLIFY_ENABLED ||
       process.env.NODE_ENV === 'test' ||
-      process.env.IS_OFFLINE
+      process.env.NODE_ENV === 'local'
     ) {
       return next();
     }

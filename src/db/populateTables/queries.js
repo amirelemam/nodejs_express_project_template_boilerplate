@@ -10,7 +10,8 @@ const testeTable = () => {
       another_id: '078-05-1120',
     })
     .into('sample_table')
-    .returning('*');
+    .returning('*')
+    
 };
 
 module.exports = {
