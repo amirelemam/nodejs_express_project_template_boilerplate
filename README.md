@@ -6,7 +6,6 @@ Basic structure to create a new project.
 
 - Node.js v12 or later
 - PostgreSQL 7.2 or later
-- Sentry account
 - AWS CLI configured (optional)
 - AWS Amplify configured (optional)
 
@@ -23,7 +22,6 @@ Basic structure to create a new project.
 - DB_PASSWORD: Database password
 - DB_NAME: Database name
 - AWS_AMPLIFY_ENABLED: enables/disables authentication middleware
-- SENTRY_ENABLED: enables/disables Sentry Error Tracking
 
 **Optional**
 
