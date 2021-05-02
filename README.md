@@ -28,7 +28,6 @@ Basic structure to create a new project.
 **Optional**
 
 - PORT: Specifies port to run the server (if not using Serverless)
-- SENTRY_DSN: DSN to send errors to Sentry
 - AWS_USER_POOL_ID: User Pool ID, you can find it on Cognito, inside AWS Console
 - AWS_REGION: Region where Amplify is configured
 - AWS_USER_AUD: Audience name on Cognito, used to check if token on request is valid

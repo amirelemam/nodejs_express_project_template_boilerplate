@@ -1,29 +1,26 @@
-'use strict';
-
+const knex = require('knex');
 const logger = require('../common/logger');
 
 const connection = {
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'postgres',
   password: process.env.DB_PASSWORD || '',
-  database: process.env.DB_NAME || '',
+  database: process.env.DB_NAME || 'postgres',
 };
 
-const knex = require('knex')({
-  client: process.env.DB_DBMS_CLIENT || 'pg',
-  version: process.env.DB_DBMS_VERSION || '7.2',
+const db = knex({
+  client: 'pg',
+  version: '8.5',
   connection,
   pool: {
-    min: process.env.DB_POLL_MIN || 0,
-    max: process.env.DB_POLL_MAX || 7,
+    min: 2,
+    max: 10,
   },
 });
 
-knex.client.pool.on('createSuccess', (eventId, resource) => {
-  logger.info('Connected to database');
-});
-knex.client.pool.on('createFail', (eventId, resource) => {
-  logger.error('Error connecting to database');
-});
+db
+  .raw('SELECT 1')
+  .then(() => logger.info({ message: 'Successfully connected to DB' }))
+  .catch((error) => logger.error({ message: 'Could not connect to DB', error }));
 
-module.exports = knex;
+module.exports = db;

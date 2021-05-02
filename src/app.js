@@ -1,5 +1,3 @@
-'use strict';
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
@@ -7,13 +5,10 @@ const cors = require('cors');
 const sanitize = require('sanitize');
 const morgan = require('morgan');
 const swaggerUi = require('swagger-ui-express');
+const { v4: uuidv4 } = require('uuid');
+
 const swaggerDocument = require('./docs/v1/swagger');
-
-if (process.env.SENTRY_ENABLED) {
-  const sentry = require('./common/sentry');
-}
 const { NotFoundError } = require('./common/errors');
-
 const logger = require('./common/logger');
 const routes = require('./routes');
 require('./db');
@@ -25,7 +20,26 @@ app.use(bodyParser.json());
 app.use(helmet());
 app.use(cors());
 app.use(sanitize.middleware);
-app.use(morgan('combined', { stream: logger.stream }));
+app.use((req, res, next) => {
+  req.id = uuidv4();
+  next();
+});
+app.use(
+  morgan((tokens, req, res) => {
+    logger.http(
+      [
+        req.id,
+        tokens.method(req, res),
+        tokens.url(req, res),
+        tokens.status(req, res),
+        tokens.res(req, res, 'content-length'),
+        '-',
+        tokens['response-time'](req, res),
+        'ms',
+      ].join(' '),
+    );
+  }),
+);
 
 // eslint-disable-next-line no-unused-vars
 app.use((req, res, next) => {
@@ -38,26 +52,17 @@ app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/api/v1', routes);
 
+/* istanbul ignore next */
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   if (err) {
-    console.log('err', err.message);
     logger.error(err.stack);
-    if (process.env.SENTRY_ENABLED && process.env.NODE_ENV !== 'test') {
-      sentry.captureException(err.stack);
-    }
 
-    if (!err.status) {
-      if (err.message.includes(`connect ECONNREFUSED ${process.env.DB_HOST}`)) {
-        logger.error('Cannot connect to database');
-      }
-      return res.status(500).json();
-    }
+    if (!err.status) return res.status(500).json();
     return res.status(err.status).send({ error: err.message });
-  } else {
-    const { status, message } = NotFoundError();
-    return res.status(status).send(message);
   }
+  const { status, message } = NotFoundError();
+  return res.status(status).send(message);
 });
 
 module.exports = app;
