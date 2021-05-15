@@ -1,10 +1,6 @@
-'use strict';
-
 const knex = require('../index');
 
-const loadDependencies = () => {
-  return knex.raw(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp";`);
-};
+const loadDependencies = () => knex.raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";');
 
 const createTimestamp = async (table) => {
   await knex.raw(`CREATE OR REPLACE FUNCTION trigger_set_timestamp()

@@ -58,7 +58,7 @@ describe('PUT /sample/:id', () => {
     await request(app).post('/api/v1/drop-tables');
 
     const response = await request(app).put(
-      '/api/v1/sample/38c3de93-874d-444c-b83f-11e89cca252b'
+      '/api/v1/sample/38c3de93-874d-444c-b83f-11e89cca252b',
     );
 
     expect(response.status).toBe(500);

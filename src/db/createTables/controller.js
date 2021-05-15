@@ -1,5 +1,3 @@
-'use strict';
-
 const createTables = require('./queries');
 
 module.exports = async () => {

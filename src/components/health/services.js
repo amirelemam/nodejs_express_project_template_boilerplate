@@ -1,5 +1,3 @@
-'use strict';
-
 const packageJson = require('../../../package.json');
 
 /**
@@ -10,12 +8,10 @@ const packageJson = require('../../../package.json');
  *                   }
  * @author Amir Elemam
  */
-const isAlive = () => {
-  return {
-    message: "I'm alive!",
-    version: packageJson.version,
-  };
-};
+const isAlive = () => ({
+  message: "I'm alive!",
+  version: packageJson.version,
+});
 
 module.exports = {
   isAlive,

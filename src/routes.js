@@ -1,5 +1,3 @@
-'use strict';
-
 const express = require('express');
 const { NotFoundError } = require('./common/errors');
 
@@ -24,7 +22,7 @@ if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'local') {
 
 // eslint-disable-next-line no-unused-vars
 router.use('*', (req, res, next) => {
-  if (req.url === '/') return next();
+  if (req.url === '/') next();
   next(NotFoundError());
 });
 

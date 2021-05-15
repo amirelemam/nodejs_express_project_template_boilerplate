@@ -8,7 +8,7 @@ describe('DELETE /sample/:id', () => {
     await request(app).post('/api/v1/populate-tables');
 
     const response = await request(app).delete(
-      '/api/v1/sample/38c3de93-874d-444c-b83f-11e89cca252b'
+      '/api/v1/sample/38c3de93-874d-444c-b83f-11e89cca252b',
     );
 
     expect(response.status).toBe(200);
@@ -28,7 +28,7 @@ describe('DELETE /sample/:id', () => {
     await request(app).post('/api/v1/create-tables');
 
     const response = await request(app).delete(
-      '/api/v1/sample/38c3de93-874d-444c-b83f-11e89cca252b'
+      '/api/v1/sample/38c3de93-874d-444c-b83f-11e89cca252b',
     );
 
     expect(response.status).toBe(404);
@@ -39,7 +39,7 @@ describe('DELETE /sample/:id', () => {
     await request(app).post('/api/v1/drop-tables');
 
     const response = await request(app).delete(
-      '/api/v1/sample/38c3de93-874d-444c-b83f-11e89cca252b'
+      '/api/v1/sample/38c3de93-874d-444c-b83f-11e89cca252b',
     );
     expect(response.status).toBe(500);
     done();

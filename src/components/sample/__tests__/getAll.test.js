@@ -23,7 +23,7 @@ describe('GET /sample', () => {
           updated_at: expect.any(String),
           deleted_at: null,
         }),
-      ])
+      ]),
     );
     done();
   });

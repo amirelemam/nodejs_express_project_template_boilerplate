@@ -1,10 +1,6 @@
-'use strict';
-
 const services = require('./services');
 
-const isAlive = () => {
-  return services.isAlive();
-};
+const isAlive = () => services.isAlive();
 
 module.exports = {
   isAlive,

@@ -1,12 +1,9 @@
-'use strict';
-
 const router = require('express').Router();
 const validation = require('./validation');
 const { BadRequestError, ConflictError } = require('../../common/errors');
-const authentication = require('../../common/middlewares/authentication');
 const controller = require('./controller');
 
-router.get('/:id', authentication, async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
 
@@ -18,7 +15,7 @@ router.get('/:id', authentication, async (req, res, next) => {
   }
 });
 
-router.get('/', authentication, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const result = await controller.getAll();
 
@@ -28,7 +25,7 @@ router.get('/', authentication, async (req, res, next) => {
   }
 });
 
-router.post('/', authentication, async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     const { body } = req;
 
@@ -45,7 +42,7 @@ router.post('/', authentication, async (req, res, next) => {
   }
 });
 
-router.put('/:id', authentication, async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
     const { body } = req;
@@ -62,7 +59,7 @@ router.put('/:id', authentication, async (req, res, next) => {
   }
 });
 
-router.delete('/:id', authentication, async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
 

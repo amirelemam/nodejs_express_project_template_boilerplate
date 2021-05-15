@@ -1,26 +1,14 @@
-'use strict';
-
 const services = require('./services');
 
-const create = (body) => {
-  return services.create(body);
-};
+const create = (body) => services.create(body);
 
-const update = (id, body) => {
-  return services.update(id, body);
-};
+const update = (id, body) => services.update(id, body);
 
-const remove = (id) => {
-  return services.remove(id);
-};
+const remove = (id) => services.remove(id);
 
-const getById = (id) => {
-  return services.getById(id);
-};
+const getById = (id) => services.getById(id);
 
-const getAll = () => {
-  return services.getAll();
-};
+const getAll = () => services.getAll();
 
 module.exports = {
   create,

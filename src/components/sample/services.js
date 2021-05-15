@@ -1,8 +1,5 @@
-'use strict';
-
-const queries = require('./queries');
+const repository = require('./repository');
 const {
-  UnprocessableEntityError,
   NotFoundError,
 } = require('../../common/errors');
 
@@ -13,7 +10,7 @@ const {
  * @author Amir Elemam
  */
 const getById = async (id) => {
-  const result = await queries.getById(id);
+  const result = await repository.getById(id);
 
   if (!result) {
     throw NotFoundError();
@@ -27,9 +24,7 @@ const getById = async (id) => {
  * @returns {Object}
  * @author Amir Elemam
  */
-const getAll = () => {
-  return queries.getAll();
-};
+const getAll = () => repository.getAll();
 
 /**
  * @description Create
@@ -47,11 +42,14 @@ const create = async (body) => {
 
   const createBody = {};
 
-  for (const key in body) {
+  const keys = Object.keys(body);
+
+  for (let i = 0; i < keys.length; i += 1) {
+    const key = keys[i];
     createBody[fields[key]] = body[key];
   }
 
-  const [recordCreated] = await queries.create(createBody);
+  const [recordCreated] = await repository.create(createBody);
 
   return recordCreated;
 };
@@ -73,11 +71,14 @@ const update = async (id, body) => {
 
   const updateBody = {};
 
-  for (const key in body) {
+  const keys = Object.keys(body);
+
+  for (let i = 0; i < keys.length; i += 1) {
+    const key = keys[i];
     updateBody[fields[key]] = body[key];
   }
 
-  const [recordUpdated] = await queries.update(id, updateBody);
+  const [recordUpdated] = await repository.update(id, updateBody);
 
   if (!recordUpdated) throw NotFoundError();
   return recordUpdated;
@@ -90,7 +91,7 @@ const update = async (id, body) => {
  * @author Amir Elemam
  */
 const remove = async (id) => {
-  const [recordDeleted] = await queries.remove(id);
+  const [recordDeleted] = await repository.remove(id);
 
   if (!recordDeleted) return null;
   return recordDeleted;
