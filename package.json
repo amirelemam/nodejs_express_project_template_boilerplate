@@ -24,7 +24,6 @@
     "jsonwebtoken": "^8.5.1",
     "jwk-to-pem": "^2.0.4",
     "knex": "^0.21.12",
-    "mongoose": "5.10.1",
     "morgan": "^1.10.0",
     "pg": "^8.5.1",
     "sanitize": "^2.1.0",
