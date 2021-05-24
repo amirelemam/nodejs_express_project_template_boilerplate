@@ -1,18 +1,10 @@
-FROM node:14-alpine
-
+FROM node:12.22.1-alpine3.11 as dependencies
+USER node
 WORKDIR /usr/src/app
+COPY --chown=node:node package*.json ./
+RUN npm ci --only=production --no-optional
 
-COPY package*.json ./
-
-RUN npm install
-
-ENV NODE_ENV=dev
-ENV DB_HOST=localhost
-ENV DB_USER=postgres
-ENV DB_PASSWORD=Qwerty@123
-ENV SENTRY_DSN=dsn-test
-
-COPY . .
-
-EXPOSE 4000
-CMD [ "node", "index.js" ]
+FROM dependencies
+COPY --chown=node:node --from=dependencies /usr/src/app/node_modules ./node_modules
+COPY --chown=node:node . .
+CMD ["npm", "start"]
