@@ -1,6 +1,6 @@
 {
   "name": "demo-boilerplate",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "This service allows you to manage your bank account",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "test:integration": "NODE_ENV=test jest src/components/**/__tests__/integration/*.test.js --detectOpenHandles --runInBand --coverage",
     "changelog": "auto-changelog --template changelog-template.hbs -p -u --commit-limit false",
     "release": "standard-version",
-    "release:minor": "standard-version --release-as minor",
+    "release:minor": "standard-version --release-as minor --skip.changelog",
     "release:patch": "standard-version --release-as patch",
     "release:major": "standard-version --release-as major"
   },
