@@ -1,28 +1,47 @@
 {
   "name": "demo-boilerplate",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "This service allows you to manage your bank account",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "start:local": "NODE_ENV=dev nodemon index.js",
+    "start:local": "NODE_ENV=dev nodemon -r dotenv/config index.js",
+    "poststart": "node -e \"require('./src/db/createTables/controller.js')();\"",
     "test": "NODE_ENV=test jest --detectOpenHandles --setupFiles --runInBand --coverage",
     "test:unit": "NODE_ENV=test jest src/components/**/__tests__/unit/**/*.test.js --detectOpenHandles --runInBand --coverage",
-    "test:integration": "NODE_ENV=test jest src/components/**/__tests__/integration/*.test.js --detectOpenHandles --runInBand --coverage"
+    "test:integration": "NODE_ENV=test jest src/components/**/__tests__/integration/*.test.js --detectOpenHandles --runInBand --coverage",
+    "changelog": "auto-changelog --template changelog-template.hbs -p -u --commit-limit false",
+    "release": "standard-version",
+    "release:minor": "standard-version --release-as minor",
+    "release:patch": "standard-version --release-as patch",
+    "release:major": "standard-version --release-as major"
+  },
+  "auto-changelog": {
+    "commitLimit": false,
+    "unreleased": true,
+    "issueUrl": "http://jira.user.com.br/browse/{id}",
+    "replaceText": {
+      "[Ff]eature:": "",
+      "[Ff]ix:": "",
+      "[Bb]reak:": "",
+      "([A-Z]+-\\d+)": "[$1](http://jira.user.com.br/browse/$1) - "
+    },
+    "includeBranch": [
+      "develop",
+      "master"
+    ]
   },
   "keywords": [],
   "author": "Amir Elemam",
   "license": "MIT",
   "dependencies": {
-    "@hapi/joi": "^17.1.1",
     "@sentry/node": "^5.28.0",
     "axios": "^0.21.1",
-    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "helmet": "^4.2.0",
+    "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
-    "jwk-to-pem": "^2.0.4",
     "knex": "^0.21.12",
     "morgan": "^1.10.0",
     "pg": "^8.5.1",
@@ -32,11 +51,15 @@
     "winston": "^3.3.3"
   },
   "devDependencies": {
+    "auto-changelog": "^2.3.0",
+    "dotenv": "^8.2.0",
     "eslint": "^7.26.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.1",
     "jest": "^26.6.3",
+    "lolex": "^6.0.0",
     "nodemon": "^2.0.7",
+    "standard-version": "^9.3.0",
     "supertest": "^6.0.1"
   }
 }
