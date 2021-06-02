@@ -14,14 +14,13 @@ Basic structure to create a new project.
 **Required**
 
 - DB_DBMS_NAME: Defines DBMS client, according to [Knex convention](http://knexjs.org/#Installation-client), defaults to 'pg' (PostgreSQL)
-- DB_DBMS_VERSION: Defines DBMS version, defaults to 7.2
+- DB_DBMS_VERSION: Defines DBMS version, defaults to 8.5
 - DB_POLL_MIN: Defines minimum quantity of connections on DB pool, defaults to 0.
 - DB_POLL_MAX: Defines maximum quantity of connections on DB pool, defaults to 7.
 - DB_HOST: Database host
 - DB_USER: Database user
 - DB_PASSWORD: Database password
 - DB_NAME: Database name
-- AWS_AMPLIFY_ENABLED: enables/disables authentication middleware
 
 **Optional**
 
