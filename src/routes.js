@@ -1,20 +1,23 @@
 const express = require('express');
 const { NotFoundError } = require('./common/errors');
 
+const { isDev, isTest } = require('./common/utils');
 const healthCheck = require('./components/health/routes');
 const createTables = require('./db/createTables/routes');
 const dropTables = require('./db/dropTables/routes');
 const populateTables = require('./db/populateTables/routes');
 const sample = require('./components/sample/routes');
+const auth = require('./components/auth/routes');
 
 const router = express.Router();
 
 // Application
 router.use('/health', healthCheck);
 router.use('/sample', sample);
+router.use('/auth', auth);
 
 // DB
-if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'local') {
+if (isDev() || isTest()) {
   router.use('/create-tables', createTables);
   router.use('/drop-tables', dropTables);
   router.use('/populate-tables', populateTables);

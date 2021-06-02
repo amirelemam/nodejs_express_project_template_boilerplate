@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const validation = require('./validation');
-const { BadRequestError, ConflictError } = require('../../common/errors');
+const validate = require('./validate');
+const { ConflictError } = require('../../common/errors');
 const controller = require('./controller');
 
 router.get('/:id', async (req, res, next) => {
@@ -25,13 +25,9 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', validate.create, async (req, res, next) => {
   try {
     const { body } = req;
-
-    const isValid = await validation.create(body);
-
-    if (!isValid) throw BadRequestError();
 
     const result = await controller.create(body);
 
@@ -42,14 +38,10 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', validate.update, async (req, res, next) => {
   try {
     const { id } = req.params;
     const { body } = req;
-
-    const isValid = await validation.update(body);
-
-    if (!isValid) throw BadRequestError();
 
     const result = await controller.update(id, body);
 

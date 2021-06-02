@@ -4,30 +4,26 @@ Basic structure to create a new project.
 
 ### Requirements
 
-- Node.js v12 or later
-- PostgreSQL 7.2 or later
-- AWS CLI configured (optional)
-- AWS Amplify configured (optional)
+- Node.js 12+
+- PostgreSQL 7.2+
+- MongoDB 4.2+
 
 ### Environment Variables
 
 **Required**
 
-- DB_DBMS_NAME: Defines DBMS client, according to [Knex convention](http://knexjs.org/#Installation-client), defaults to 'pg' (PostgreSQL)
-- DB_DBMS_VERSION: Defines DBMS version, defaults to 8.5
-- DB_POLL_MIN: Defines minimum quantity of connections on DB pool, defaults to 0.
-- DB_POLL_MAX: Defines maximum quantity of connections on DB pool, defaults to 7.
 - DB_HOST: Database host
 - DB_USER: Database user
 - DB_PASSWORD: Database password
 - DB_NAME: Database name
+- SENTRY_DSN: Sentry DSN
 
 **Optional**
 
-- PORT: Specifies port to run the server (if not using Serverless)
-- AWS_USER_POOL_ID: User Pool ID, you can find it on Cognito, inside AWS Console
-- AWS_REGION: Region where Amplify is configured
-- AWS_USER_AUD: Audience name on Cognito, used to check if token on request is valid
+- PORT: Specifies port to run the server
+- DB_DBMS_VERSION: Defines DBMS version, defaults to 8.5
+- DB_POLL_MIN: Defines minimum quantity of connections on DB pool, defaults to 0.
+- DB_POLL_MAX: Defines maximum quantity of connections on DB pool, defaults to 7.
 
 ### Install
 
@@ -39,7 +35,7 @@ Basic structure to create a new project.
 
 ### Start offline
 
-`$ npm run start-local`
+`$ npm run start:local`
 
 ### Start
 

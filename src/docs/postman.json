@@ -1,33 +1,13 @@
 {
 	"info": {
-		"_postman_id": "f0008350-5b8f-49fa-88ee-67e0729d0d9a",
-		"name": "Sample Node.js Project",
+		"_postman_id": "1a5a67fd-3c63-421a-a302-aa48ca075c57",
+		"name": "Node.js Boilerplate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "DB",
 			"item": [
-				{
-					"name": "Create tables",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "localhost:4000/api/v1/create-tables",
-							"host": [
-								"localhost"
-							],
-							"port": "4000",
-							"path": [
-								"api",
-								"v1",
-								"create-tables"
-							]
-						}
-					},
-					"response": []
-				},
 				{
 					"name": "Drop tables",
 					"request": {
@@ -49,12 +29,12 @@
 					"response": []
 				},
 				{
-					"name": "Populate tables",
+					"name": "Create tables",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "localhost:4000/api/v1/drop-tables",
+							"raw": "localhost:4000/api/v1/create-tables",
 							"host": [
 								"localhost"
 							],
@@ -62,7 +42,27 @@
 							"path": [
 								"api",
 								"v1",
-								"drop-tables"
+								"create-tables"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Populate tables",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/v1/populate-tables",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"populate-tables"
 							]
 						}
 					},
@@ -71,125 +71,190 @@
 			]
 		},
 		{
-			"name": "Get all",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:4000/api/v1/sample",
-					"host": [
-						"localhost"
-					],
-					"port": "4000",
-					"path": [
-						"api",
-						"v1",
-						"sample"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get by ID",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:4000/api/v1/sample/a8c881b0-d5ca-4a72-9a6e-427f2a634bf6",
-					"host": [
-						"localhost"
-					],
-					"port": "4000",
-					"path": [
-						"api",
-						"v1",
-						"sample",
-						"a8c881b0-d5ca-4a72-9a6e-427f2a634bf6"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n      \"name\": \"John\",\n      \"anotherId\": \"4cd84b0d-4673-4261-bf43-50095919eeb0\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Sample",
+			"item": [
+				{
+					"name": "Get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/v1/sample",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"sample"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:4000/api/v1/sample",
-					"host": [
-						"localhost"
-					],
-					"port": "4000",
-					"path": [
-						"api",
-						"v1",
-						"sample"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n      \"name\": \"Joao\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Get by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/v1/sample/a8c881b0-d5ca-4a72-9a6e-427f2a634bf6",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"sample",
+								"a8c881b0-d5ca-4a72-9a6e-427f2a634bf6"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:4000/api/v1/sample/38c3de93-874d-444c-b83f-11e89cca252b",
-					"host": [
-						"localhost"
-					],
-					"port": "4000",
-					"path": [
-						"api",
-						"v1",
-						"sample",
-						"38c3de93-874d-444c-b83f-11e89cca252b"
-					]
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n      \"name\": \"John\",\n      \"anotherId\": \"4cd84b0d-4673-4261-bf43-50095919eeb0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/v1/sample",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"sample"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n      \"name\": \"Joao\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/api/v1/sample/38c3de93-874d-444c-b83f-11e89cca252b",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"sample",
+								"38c3de93-874d-444c-b83f-11e89cca252b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/api/v1/sample/38c3de93-874d-444c-b83f-11e89cca252b",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"sample",
+								"38c3de93-874d-444c-b83f-11e89cca252b"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Delete",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "localhost:4000/api/v1/sample/38c3de93-874d-444c-b83f-11e89cca252b",
-					"host": [
-						"localhost"
-					],
-					"port": "4000",
-					"path": [
-						"api",
-						"v1",
-						"sample",
-						"38c3de93-874d-444c-b83f-11e89cca252b"
-					]
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"branch\": \"0001\",\n    \"account\": \"12345\",\n    \"password\": \"Qwerty@123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ACCOUNT_MANAGER}}/api/v1/auth/login",
+							"host": [
+								"{{ACCOUNT_MANAGER}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoiMTIzNDUiLCJicmFuY2giOiIwMDAxIiwicGFzc3dvcmQiOiIyMTA1NzBlNzVkYjNiMmM1YTVmNjA5YzBlNTA3ZWQ5YmM4ODQ5MGVkMzExM2NhZTNjNDIxZGEyZTNiMDM2OWNiYWNlNDdhYmU3YmM0NzU5MzhiN2E3M2NmM2QyY2Y5YTgxODUzYmIxZmEyYmQ3MWI4NDc3NTA3MDNkN2JiN2ViZSIsImlhdCI6MTYyMTE0MjY4MywiZXhwIjoxNjIxMjI5MDgzfQ.9f0g4jdwuxaf_Dyfep-6d5o9GFw02ICBUH1mgebxaZk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ACCOUNT_MANAGER}}/api/v1/auth/verify",
+							"host": [
+								"{{ACCOUNT_MANAGER}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"verify"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
 			"name": "Health",

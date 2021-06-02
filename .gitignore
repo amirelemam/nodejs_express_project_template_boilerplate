@@ -9,3 +9,9 @@ jspm_packages
 .DS_Store
 coverage
 .eslintcache
+
+# Env
+.env
+.env.dev
+.env.prod
+.env.test

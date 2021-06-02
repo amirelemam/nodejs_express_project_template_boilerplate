@@ -1,20 +1,15 @@
 {
   "name": "demo-boilerplate",
-  "version": "1.3.0",
+  "version": "1.0.0",
   "description": "This service allows you to manage your bank account",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "start:local": "NODE_ENV=dev nodemon -r dotenv/config index.js",
     "poststart": "node -e \"require('./src/db/createTables/controller.js')();\"",
-    "test": "NODE_ENV=test jest --detectOpenHandles --setupFiles --runInBand --coverage",
-    "test:unit": "NODE_ENV=test jest src/components/**/__tests__/unit/**/*.test.js --detectOpenHandles --runInBand --coverage",
-    "test:integration": "NODE_ENV=test jest src/components/**/__tests__/integration/*.test.js --detectOpenHandles --runInBand --coverage",
-    "changelog": "auto-changelog --template changelog-template.hbs -p -u --commit-limit false",
-    "release": "standard-version",
-    "release:minor": "standard-version --release-as minor --skip.changelog",
-    "release:patch": "standard-version --release-as patch",
-    "release:major": "standard-version --release-as major"
+    "test": "NODE_ENV=test SECRET_TOKEN=amir jest --detectOpenHandles --setupFiles --runInBand --coverage",
+    "test:unit": "NODE_ENV=test SECRET_TOKEN=amir jest src/components/**/__tests__/unit/**/*.test.js --detectOpenHandles --runInBand --coverage",
+    "test:integration": "NODE_ENV=test SECRET_TOKEN=amir jest src/components/**/__tests__/integration/*.test.js --detectOpenHandles --runInBand --coverage"
   },
   "auto-changelog": {
     "commitLimit": false,
@@ -43,6 +38,7 @@
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.12",
+    "mongoose": "^5.12.11",
     "morgan": "^1.10.0",
     "pg": "^8.5.1",
     "sanitize": "^2.1.0",

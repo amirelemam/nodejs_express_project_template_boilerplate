@@ -1,6 +1,6 @@
 const request = require('supertest');
-const app = require('../../../app');
-const { toBeStringOrNull } = require('../../../common/utils');
+const app = require('../../../../app');
+const { toBeStringOrNull } = require('../../../../common/utils');
 
 describe('GET /sample', () => {
   it('should return an array of objects', async (done) => {

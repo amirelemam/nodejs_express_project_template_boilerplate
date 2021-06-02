@@ -1,4 +1,5 @@
 const sample = require('./sample');
+const auth = require('./auth');
 
 module.exports = {
   openapi: '3.0.1',
@@ -27,6 +28,12 @@ module.exports = {
     },
   },
   paths: {
+    '/api/v1/auth/login': {
+      post: auth.login,
+    },
+    '/api/v1/auth/verify': {
+      post: auth.verify,
+    },
     '/api/v1/sample': {
       get: sample.getAll,
       post: sample.create,

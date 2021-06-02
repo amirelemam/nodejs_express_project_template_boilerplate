@@ -1,11 +1,21 @@
 module.exports = {
   getById: {
     tags: ['Sample'],
-    description: 'Returns all',
+    summary: 'Returns by ID',
     operationId: 'getById',
     security: [
       {
         bearerAuth: [],
+      },
+    ],
+    parameters: [
+      {
+        in: 'path',
+        name: 'id',
+        schema: {
+          type: 'string',
+        },
+        required: true,
       },
     ],
     responses: {
@@ -51,7 +61,7 @@ module.exports = {
   },
   getAll: {
     tags: ['Sample'],
-    description: 'Returns all',
+    summary: 'Returns all',
     operationId: 'getAll',
     security: [
       {
@@ -104,11 +114,21 @@ module.exports = {
   },
   remove: {
     tags: ['Sample'],
-    description: 'Deletes item by ID',
+    summary: 'Deletes item by ID',
     operationId: 'remove',
     security: [
       {
         bearerAuth: [],
+      },
+    ],
+    parameters: [
+      {
+        in: 'path',
+        name: 'id',
+        schema: {
+          type: 'string',
+        },
+        required: true,
       },
     ],
     responses: {
@@ -122,11 +142,21 @@ module.exports = {
   },
   update: {
     tags: ['Sample'],
-    description: 'Returns all',
+    summary: 'Updates by ID',
     operationId: 'update',
     security: [
       {
         bearerAuth: [],
+      },
+    ],
+    parameters: [
+      {
+        in: 'path',
+        name: 'id',
+        schema: {
+          type: 'string',
+        },
+        required: true,
       },
     ],
     responses: {
@@ -172,13 +202,33 @@ module.exports = {
   },
   create: {
     tags: ['Sample'],
-    description: 'Returns all',
+    summary: 'Creates',
     operationId: 'create',
     security: [
       {
         bearerAuth: [],
       },
     ],
+    requestBody: {
+      required: true,
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            properties: {
+              name: {
+                type: 'string',
+                description: 'Name',
+              },
+              another_id: {
+                type: 'string',
+                description: 'An optional ID',
+              },
+            },
+          },
+        },
+      },
+    },
     responses: {
       201: {
         description: 'Creates an item',

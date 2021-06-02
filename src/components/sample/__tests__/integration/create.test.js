@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../../../app');
+const app = require('../../../../app');
 
 describe('POST /sample', () => {
   it('should return store created if successful', async (done) => {

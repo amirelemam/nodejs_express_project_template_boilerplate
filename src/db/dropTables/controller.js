@@ -1,3 +1,6 @@
 const dropTables = require('./queries');
 
-module.exports = () => dropTables.sampleTable();
+module.exports = async () => {
+  await dropTables.sampleTable();
+  await dropTables.auth();
+};
