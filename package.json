@@ -1,6 +1,6 @@
 {
   "name": "demo-boilerplate",
-  "version": "1.0.0",
+  "version": "1.4.0",
   "description": "This service allows you to manage your bank account",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,8 @@
     "poststart": "node -e \"require('./src/db/createTables/controller.js')();\"",
     "test": "NODE_ENV=test SECRET_TOKEN=amir jest --detectOpenHandles --setupFiles --runInBand --coverage",
     "test:unit": "NODE_ENV=test SECRET_TOKEN=amir jest src/components/**/__tests__/unit/**/*.test.js --detectOpenHandles --runInBand --coverage",
-    "test:integration": "NODE_ENV=test SECRET_TOKEN=amir jest src/components/**/__tests__/integration/*.test.js --detectOpenHandles --runInBand --coverage"
+    "test:integration": "NODE_ENV=test SECRET_TOKEN=amir jest src/components/**/__tests__/integration/*.test.js --detectOpenHandles --runInBand --coverage",
+    "changelog": "auto-changelog --template changelog-template.hbs -p -u --commit-limit false"
   },
   "auto-changelog": {
     "commitLimit": false,
