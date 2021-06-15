@@ -1,6 +1,6 @@
-const joi = require('joi');
-const logger = require('../../common/logger');
-const { BadRequestError } = require('../../common/errors');
+const joi = require("joi");
+const logger = require("../../common/logger");
+const { BadRequestError } = require("../../common/errors");
 
 const create = async ({ body }, res, next) => {
   const schema = joi.object().keys({
@@ -13,7 +13,7 @@ const create = async ({ body }, res, next) => {
     return next();
   } catch (error) {
     logger.error(error);
-    const { status, message } = BadRequestError();
+    const { status, message } = BadRequestError(error);
     return res.status(status).json(message);
   }
 };
@@ -29,7 +29,7 @@ const update = async ({ body }, res, next) => {
     return next();
   } catch (error) {
     logger.error(error);
-    const { status, message } = BadRequestError();
+    const { status, message } = BadRequestError(error);
     return res.status(status).json(message);
   }
 };
