@@ -11,7 +11,7 @@ const verify = async (req, res, next) => {
     await schema.validateAsync(token);
     return next();
   } catch (error) {
-    logger.error(error);
+    logger.error(new Error(error));
     const { status, message } = BadRequestError();
     return res.status(status).json(message);
   }

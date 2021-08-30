@@ -14,7 +14,7 @@ const verifyToken = async (token) => {
 
     return true;
   } catch (error) {
-    logger.error(error);
+    logger.error(new Error(error));
     return false;
   }
 };

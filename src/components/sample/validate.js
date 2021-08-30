@@ -12,7 +12,7 @@ const create = async ({ body }, res, next) => {
     await schema.validateAsync(body);
     return next();
   } catch (error) {
-    logger.error(error);
+    logger.error(new Error(error));
     const { status, message } = BadRequestError(error);
     return res.status(status).json(message);
   }
@@ -28,7 +28,7 @@ const update = async ({ body }, res, next) => {
     await schema.validateAsync(body);
     return next();
   } catch (error) {
-    logger.error(error);
+    logger.error(new Error(error));
     const { status, message } = BadRequestError(error);
     return res.status(status).json(message);
   }

@@ -17,7 +17,7 @@ const checkRequiredVars = (listOfEnvNames) => {
   if (isDev() || isTest()) return;
   if (!Array.isArray(listOfEnvNames)) {
     const message = 'Cannot check list of env vars. List must be an array';
-    logger.error(message);
+    logger.error(new Error(message));
     throw new Error(message);
   }
 
@@ -28,7 +28,7 @@ const checkRequiredVars = (listOfEnvNames) => {
 
   if (envVarsNotPresent.length > 0) {
     const message = `Cannot find env vars: ${envVarsNotPresent.join(' ')}`;
-    logger.error(message);
+    logger.error(new Error(message));
     throw new Error(message);
   }
 };
@@ -38,7 +38,7 @@ const testDBConnection = () => db
   .then(() => logger.info({ message: 'Successfully connected to DB' }))
   .catch((error) => {
     const message = 'Could not connect to DB';
-    logger.error({ message, error });
+    logger.error(new Error({ message, error }));
     throw new Error(message);
   });
 

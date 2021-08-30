@@ -68,7 +68,7 @@ app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   if (err) {
-    logger.error(err.stack);
+    logger.error(new Error(err));
 
     if (!err.status) return res.status(500).json();
     return res.status(err.status).send({ error: err.message });
